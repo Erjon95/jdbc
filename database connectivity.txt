@@ -1,0 +1,35 @@
+public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		
+		
+		System.out.println("connected");
+		connection.setAutoCommit(false);
+		
+		DatabaseMetaData databaseMetaData = connection.getMetaData();
+		//System.out.println(databaseMetaData.g);
+		
+		String ddlCreate = "create table t(empno number)";
+		String sqlSelect = "select * from emp"; 
+		String sqlUpdate = "update emp set sal = sal + 100";
+	    Statement statement = connection.createStatement();
+	   
+	    //boolean result = statement.execute(ddlCreate);
+	    
+	    /*if (result)
+	    	System.out.println("executed a select statement");
+	    else {
+			System.out.println("executed a DDL statement");
+		}*/
+	    
+	    ResultSet resultSet = statement.executeQuery(sqlSelect);
+	    
+	    while (resultSet.next()) {
+	    	System.out.println(resultSet.getInt(1) + " " + resultSet.getString(2) + " " + resultSet.getInt(8));
+		}
+	    
+	    //int count = statement.executeUpdate(sqlUpdate);
+	    //System.out.println(count + " rows updated");
+	    statement.close();
+	    connection.close();
+	    
+	    
+	}
